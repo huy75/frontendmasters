@@ -1,0 +1,13 @@
+{
+  "dependencies": {
+    "caf": "^13.1.1",
+    "child_process": "^1.0.2",
+    "express": "^4.17.1",
+    "get-stdin": "^9.0.0",
+    "http": "^0.0.1-security",
+    "node-fetch": "^3.0.0",
+    "node-static-alias": "^1.1.2",
+    "nodemon": "^2.0.14",
+    "sqlite3": "^5.0.2"
+  }
+}
