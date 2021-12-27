@@ -9,5 +9,6 @@ Understanding of the new features of JavaScript in ES6+:
 Hands-on programming challenges, the instructions are in the urls herebelow
 
 - 0-promises.js (http://csbin.io/promises)
+- 1-iterators.js (http://csbin.io/iterators)
 
 # Will Sentance, Codesmith
