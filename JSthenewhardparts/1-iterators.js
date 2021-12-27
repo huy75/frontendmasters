@@ -62,7 +62,7 @@ function sumArray(arr) {
   // use your nextIterator function
   const iteratorWithNext = nextIterator(arr);
   let sum = 0;
-	arr.forEach(element => sum += iteratorWithNext.next());
+	  arr.forEach(element => sum += iteratorWithNext.next());
   return sum;
 }
 
@@ -145,9 +145,19 @@ Words.prototype[Symbol.iterator] = function() {
 // for (word of helloWorld) { console.log(word); } // -> should log 'Hello' and 'World'
 
 // CHALLENGE 7
-
+// Build a function that walks through an array and returns the element concatenated with the string "was found after index x",
+// where x is the previous index.
+// Note: if it is the first element it should say that it is the first
 function valueAndPrevIndex(array){
-
+  let idx = 0
+  return {
+    sentence() {
+      const suffix = idx === 0 ? 'first' : `was found after index ${idx - 1}`;
+      const element = array[idx];
+      idx++;
+      return `${element} ${suffix}`;
+    }
+  }
 }
 
 const returnedSentence = valueAndPrevIndex([4,5,6])
@@ -157,10 +167,17 @@ console.log(returnedSentence.sentence());
 
 
 //CHALLENGE 8
-
+// Write a function that will console.log "hello there", or "gibberish", every three seconds depending on
+// if the word passed into the function is 'english'.
+// Do not use any type of loop constructor and only make the call to createConversation once.
 function* createConversation(string) {
-
-
+  yield setInterval(function() {
+    if (string == "english") {
+      console.log("hello there");
+    } else {
+      console.log("gibberish");
+    }
+  }, 3000);
 }
 
 console.log(createConversation('english').next());
@@ -168,13 +185,18 @@ console.log(createConversation('english').next());
 
 
 //CHALLENGE 9
+// Use async/await to console.log a sentence comprised of a noun and verb in which the non async function takes in a noun,
+// concatenates it with a hard coded verb and returns it to the async function to be console.logged after a duration of 3 seconds.
+// Call the async function only once, feeding it a noun to make this happen.
 function waitForVerb(noun) {
-
+	return new Promise(resolve => {
+    setTimeout(() => resolve(`${noun} runs`), 3000);
+  });
 }
 
 async function f(noun) {
-
+	const sentence = await waitForVerb(noun);
+  console.log(sentence);
 }
 
 f("dog");
-
