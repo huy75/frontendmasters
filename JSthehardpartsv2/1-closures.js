@@ -2,6 +2,8 @@
 // http://csbin.io/closures
 
 // CHALLENGE 1
+// Create a function createFunction that creates and returns a function.
+// When that created function is called, it should print "hello".
 function createFunction() {
 	function sayHello () {
     console.log("hello");
@@ -15,6 +17,8 @@ function1(); // => should console.log('hello');
 
 
 // CHALLENGE 2
+// Create a function createFunctionPrinter that accepts one input and returns a function.
+// When that created function is called, it should print out the input that was used when the function was created.
 function createFunctionPrinter(input) {
 	return () => {
     console.log(`${input}`);
@@ -29,6 +33,10 @@ printHello(); // => should console.log('hello');
 
 
 // CHALLENGE 3
+// Examine the code for the outer function.
+// Notice that we are returning a function and that function is using variables that are outside of its scope.
+// Uncomment those lines of code. Try to deduce the output before executing.
+// Now we are going to create a function addByX that returns a function that will add an input by x.
 function outer() {
   let counter = 0; // this variable is outside incrementCounter's scope
   return () => {
@@ -75,6 +83,10 @@ function addByX(x) {
 
 
 // CHALLENGE 4
+// Write a function once that accepts a callback as input and returns a function.
+// When the returned function is called the first time, it should call the callback and return that output.
+// If it is called any additional times, instead of calling the callback again it will simply return the output value
+// from the first time it was called.
 function once(func) {
   let onceVal;
   let count = 0;
@@ -95,6 +107,8 @@ function once(func) {
 
 
 // CHALLENGE 5
+// Write a function after that takes the number of times the callback needs to be called before being executed
+// as the first parameter and the callback as the second parameter.
 function after(count, func) {
   let counter = 0;
   return () => {
@@ -111,12 +125,19 @@ afterCalled(); // => 'hello' is printed
 
 
 // CHALLENGE 6
+// Write a function delay that accepts a callback as the first parameter and the wait in milliseconds before
+// allowing the callback to be invoked as the second parameter.
+// Any additional arguments after wait are provided to func when it is invoked. HINT: research setTimeout();
 function delay(func, wait, ...args) {
   setTimeout(() => func(...args), wait);
 }
 
 
 // CHALLENGE 7
+// Write a function rollCall that accepts an array of names and returns a function.
+// The first time the returned function is invoked, it should log the first name to the console.
+// The second time it is invoked, it should log the second name to the console, and so on,
+// until all names have been called. Once all names have been called, it should log 'Everyone accounted for'.
 function rollCall(names) {
 	return () => {
     if (!names.length) {
@@ -136,6 +157,12 @@ rollCaller() // => should log 'Everyone accounted for'
 
 
 // CHALLENGE 8
+// Create a function saveOutput that accepts a function (that will accept one argument),
+// and a string (that will act as a password).
+// saveOutput will then return a function that behaves exactly like the passed-in function,
+// except for when the password string is passed in as an argument.
+// When this happens, the returned function will return an object with all previously passed-in arguments as keys,
+// and the corresponding outputs as values.
 function saveOutput(func, magicWord) {
 	let log = {};
   return (num) => {
@@ -156,6 +183,12 @@ console.log(multBy2AndLog('boo')); // => should log { 2: 4, 9: 18 }
 
 
 // CHALLENGE 9
+// Create a function cycleIterator that accepts an array, and returns a function.
+// The returned function will accept zero arguments.
+// When first invoked, the returned function will return the first element of the array.
+// When invoked a second time, the returned function will return the second element of the array, and so forth.
+// After returning the last element of the array, the next invocation will return the first element of the array again,
+// and continue on with the second after that, and so forth.
 function cycleIterator(array) {
   let idx = 0;
 	return () => {
@@ -173,6 +206,11 @@ console.log(getDay()); // => should log 'Fri'
 
 
 // CHALLENGE 10
+// Create a function defineFirstArg that accepts a function and an argument.
+// Also, the function being passed in will accept at least one argument.
+// defineFirstArg will return a new function that invokes the passed-in function
+// with the passed-in argument as the passed-in function's first argument.
+// Additional arguments needed by the passed-in function will need to be passed into the returned function.
 function defineFirstArg(func, arg) {
 	return (val) => {
 		return ((arg > val) ? func(arg, val) : func(val, arg));
@@ -186,6 +224,11 @@ console.log(subFrom20(5)); // => should log 15
 
 
 // CHALLENGE 11
+// Create a function dateStamp that accepts a function and returns a function.
+// The returned function will accept however many arguments the passed-in function accepts,
+// and return an object with a date key that contains a timestamp with the time of invocation,
+// and an output key that contains the result from invoking the passed-in function.
+// HINT: You may need to research how to access information on Date objects.
 function dateStamp(func) {
 	let logDate = {};
   return (val) => {
@@ -202,6 +245,7 @@ console.log(stampedMultBy2(6)); // => should log { date: (today's date), output:
 
 
 // CHALLENGE 12
+
 function censor() {
 
 }
@@ -226,6 +270,8 @@ function createSecretHolder(secret) {
 
 
 // CHALLENGE 14
+// Write a function, callTimes, that returns a new function.
+// The new function should return the number of times it’s been called.
 function callTimes() {
 	let counter = 0;
   return () => {
@@ -244,6 +290,10 @@ function callTimes() {
 
 
 // CHALLENGE 15
+// Create a function russianRoulette that accepts a number (let us call it n), and returns a function.
+// The returned function will take no arguments, and will return the string 'click' the first n - 1 number of times it is invoked.
+// On the very next invocation (the nth invocation), the returned function will return the string 'bang'.
+// On every invocation after that, the returned function returns the string 'reload to play again'.
 function russianRoulette(num) {
 	let counter = 0;
   return () => {
@@ -267,6 +317,12 @@ function russianRoulette(num) {
 
 
 // CHALLENGE 16
+// Create a function average that accepts no arguments, and returns a function (that will accept either a number as its lone argument,
+// or no arguments at all).
+// When the returned function is invoked with a number, the output should be average of all the numbers have ever been passed into
+// that function (duplicate numbers count just like any other number).
+// When the returned function is invoked with no arguments, the current average is outputted.
+// If the returned function is invoked with no arguments before any numbers are passed in, then it should return 0.
 function average() {
 	let counter = 0, sum = 0;
   return (num) => {
@@ -307,6 +363,16 @@ function makeFuncTester(arrOfTests) {
 
 
 // CHALLENGE 18
+// Create a function makeHistory that accepts a number (which will serve as a limit),
+// and returns a function (that will accept a string).
+// The returned function will save a history of the most recent "limit" number of strings passed into the returned function
+// (one per invocation only).
+// Every time a string is passed into the function, the function should return that same string with the word 'done' after it
+// (separated by a space).
+// However, if the string 'undo' is passed into the function, then the function should delete the last action saved in the history,
+// and return that deleted string with the word 'undone' after (separated by a space).
+// If 'undo' is passed into the function and the function's history is empty,
+// then the function should return the string 'nothing to undo'.
 function makeHistory(limit) {
   let memory = [];
 	return (string) => {
